@@ -31,6 +31,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/users/**").permitAll()
                                 .requestMatchers("/static/**").permitAll()
                                 .requestMatchers("/log.png").permitAll()
+                                .requestMatchers("/api/posts/create").authenticated()
                                 .anyRequest().authenticated())
                 .formLogin((form) ->
                         form

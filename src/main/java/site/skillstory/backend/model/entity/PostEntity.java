@@ -3,10 +3,8 @@ package site.skillstory.backend.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -15,8 +13,8 @@ import java.util.Date;
 @ToString
 @Builder
 @Entity
-@Table(name = "boards")
-public class BoardEntity {
+@Table(name = "posts")
+public class PostEntity {
 
     @Id
     private Long id;

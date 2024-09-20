@@ -1,4 +1,4 @@
-package site.skillstory.backend.model.domain.Reqeust;
+package site.skillstory.backend.model.domain.Response;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Data
 @Component
-public class RequestBoardModel {
+public class ResponsePostModel {
 
     private Long id;
     private String title;

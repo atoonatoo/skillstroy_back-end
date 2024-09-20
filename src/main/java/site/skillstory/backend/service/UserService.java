@@ -13,7 +13,7 @@ public interface UserService {
 
     List<UserEntity> allUsers();
 
-    Optional<UserEntity> getUserByUsername(String username);
+    Optional<UserEntity> getUserByUsername(Long id);
 
     ResponseEntity<UserEntity> update(Long id, RequestUserModel requestUserModel);
 

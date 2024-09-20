@@ -15,38 +15,37 @@ import java.util.Optional;
 
 
 @Tag(name = "getApi", description = "테스트")
-@RequestMapping("/api/users/")
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 @RestController
 public class UserController {
-    private final CustomUserDetailService USER_DETAIL_SERVICE;
-    private final UserService SERVICE;
-    private final UserRepository USER_REPOSITORY;
+    private final CustomUserDetailService userDetailService;
+    private final UserService service;
 
-    @PostMapping("join")
+    @PostMapping("/join")
     public ResponseEntity<Boolean> join(@RequestBody RequestUserModel requestUserModel) {
-        return ResponseEntity.ok(USER_DETAIL_SERVICE.join(requestUserModel));
+        return ResponseEntity.ok(userDetailService.join(requestUserModel));
     }
 
-    @GetMapping("all-users")
+    @GetMapping("/")
     public ResponseEntity<List<UserEntity>> findAll() {
-        return ResponseEntity.ok(SERVICE.allUsers());
+        return ResponseEntity.ok(service.allUsers());
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Optional<UserEntity>> getUserByUsername(@PathVariable String username) {
-        return ResponseEntity.ok(SERVICE.getUserByUsername(username));
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<UserEntity>> getUserByUsername(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getUserByUsername(id));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ResponseEntity<UserEntity>> update (@PathVariable Long id, @RequestBody RequestUserModel requestUserModel) {
-        return ResponseEntity.ok(SERVICE.update(id, requestUserModel));
+        return ResponseEntity.ok(service.update(id, requestUserModel));
     }
 
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ResponseEntity<Boolean>> delete (@PathVariable Long id) {
-        return ResponseEntity.ok(SERVICE.delete(id));
+        return ResponseEntity.ok(service.delete(id));
     }
 
 

@@ -19,24 +19,23 @@ import java.util.Optional;
 
 @Service
 public class CustomUserDetailService implements UserDetailsService {
-
-    private final UserRepository USER_REPOSITORY;
-    private final PasswordEncoder PASSWORD_ENCODER;
-    private final ModelMapper MODEL_MAPPER;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public CustomUserDetailService(UserRepository userRepository, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
 
-        this.USER_REPOSITORY = userRepository;
-        this.PASSWORD_ENCODER = passwordEncoder;
-        this.MODEL_MAPPER = modelMapper;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     @Transactional(readOnly = true) // 읽기 전용 작업으로 선언
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<UserEntity> optionalUserEntity = USER_REPOSITORY.findByUsername(username);
+        Optional<UserEntity> optionalUserEntity = userRepository.findByUsername(username);
         UserEntity userEntity = optionalUserEntity.orElseThrow(UserNotFoundException::new);
         RequestUserModel requestUserModel = new RequestUserModel();
         requestUserModel.setUsername(optionalUserEntity.get().getUsername());
@@ -47,12 +46,12 @@ public class CustomUserDetailService implements UserDetailsService {
 
     public Boolean join(RequestUserModel requestUserModel) {
 
-        if(USER_REPOSITORY.findByUsername(requestUserModel.getUsername()).isPresent()) {
+        if (userRepository.findByUsername(requestUserModel.getUsername()).isPresent()) {
             throw new UserAlreadyExistsException();
         }
-        requestUserModel.setPassword(PASSWORD_ENCODER.encode(requestUserModel.getPassword()));
-        UserEntity entity = MODEL_MAPPER.map(requestUserModel, UserEntity.class);
-        USER_REPOSITORY.save(entity);
+        requestUserModel.setPassword(passwordEncoder.encode(requestUserModel.getPassword()));
+        UserEntity entity = modelMapper.map(requestUserModel, UserEntity.class);
+        userRepository.save(entity);
 
         return true;
     }
