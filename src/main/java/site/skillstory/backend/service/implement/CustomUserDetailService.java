@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @Service
 public class CustomUserDetailService implements UserDetailsService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
@@ -46,7 +47,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     public Boolean join(RequestUserModel requestUserModel) {
 
-        if (userRepository.findByUsername(requestUserModel.getUsername()).isPresent()) {
+        if(userRepository.findByUsername(requestUserModel.getUsername()).isPresent()) {
             throw new UserAlreadyExistsException();
         }
         requestUserModel.setPassword(passwordEncoder.encode(requestUserModel.getPassword()));

@@ -11,7 +11,7 @@ import lombok.*;
 @ToString
 @Builder
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
@@ -35,5 +35,11 @@ public class UserEntity {
 
     @Column(nullable = false)
     private String address;
+
+    @Column(nullable = false)
+    private String career;
+
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'student'")
+    private String role;  // 역할 (학생, 강사, 멘토, 관리자 등)
 
 }

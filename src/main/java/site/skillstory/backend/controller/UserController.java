@@ -48,7 +48,33 @@ public class UserController {
         return ResponseEntity.ok(service.delete(id));
     }
 
+    // 로그인 성공 시 처리
+    @GetMapping("/authSuccess")
+    public ResponseEntity<String> authSuccess() {
+        return ResponseEntity.ok("Login Successful");
+    }
 
+    // 로그인 실패 시 처리
+    @GetMapping("/authFail")
+    public ResponseEntity<String> authFail() {
+        return ResponseEntity.status(401).body("Login Failed");
+    }
 
+    // 로그아웃 성공 시 처리
+    @GetMapping("/logOutSuccess")
+    public ResponseEntity<String> logOutSuccess() {
+        return ResponseEntity.ok("Logged out successfully");
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity<?> authenticateUser(@RequestBody RequestUserModel requestUserModel) {
+        // 로그인 처리 로직
+        return ResponseEntity.ok("Authenticated");
+    }
+
+    // 뷰로 반환할 프론트가 없어서
+    // Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+    // 오류가 생기는 것으로 추정
+    // 간단하게 view를 만들어 보도록 할 것이다.
 
 }
