@@ -1,5 +1,6 @@
 package site.skillstory.backend.service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import site.skillstory.backend.model.domain.Reqeust.RequestPostModel;
 import site.skillstory.backend.model.domain.Response.ResponsePostModel;
@@ -20,4 +21,6 @@ public interface PostService {
     Optional<ResponsePostModel> update(long id, RequestPostModel requestPostModel);
 
     Boolean delete(Long id);
+
+    Page<PostEntity> pagination(int page, int size);
 }

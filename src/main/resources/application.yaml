@@ -22,13 +22,14 @@ spring:
         use_sql_comments: true
     show-sql: true
 
-  security:
-    user:
-      name: a
-      password: a
-
-    filter:
-      dispatcher-types: async, error, request
+#  security:
+#    jwt:
+#      token:
+#        key: {JWT Key}
+#
+#    filter:
+#      dispatcher-types: async, error, request
+#
 #  springdoc:
 #    packages-to-scan: com.colabear754.springdoc_example.controllers
 #    default-consumes-media-type: application/json;charset=UTF-8

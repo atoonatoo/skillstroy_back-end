@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize
+                                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/swagger-resources/**", "/webjars/**").permitAll() //스웨거 경로는 모두 허용
                                 .requestMatchers("/api/users/**").permitAll()  // 회원가입 및 인증 관련 경로는 모두 허용
                                 .requestMatchers("/api/posts/**").permitAll()
                                 .requestMatchers("/static/**").permitAll()

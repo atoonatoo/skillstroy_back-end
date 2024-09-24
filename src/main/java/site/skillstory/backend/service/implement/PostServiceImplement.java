@@ -2,9 +2,10 @@ package site.skillstory.backend.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import site.skillstory.backend.exception.post.PostNotFoundException;
-import site.skillstory.backend.exception.user.UserNotFoundException;
 import site.skillstory.backend.model.domain.Reqeust.RequestPostModel;
 import site.skillstory.backend.model.domain.Response.ResponsePostModel;
 import site.skillstory.backend.model.entity.PostEntity;
@@ -68,6 +69,12 @@ public class PostServiceImplement implements PostService {
         } else {
             throw new PostNotFoundException();
         }
+    }
+
+    @Override
+    public Page<PostEntity> pagination(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return postRepository.findAll(pageRequest);
     }
 
 

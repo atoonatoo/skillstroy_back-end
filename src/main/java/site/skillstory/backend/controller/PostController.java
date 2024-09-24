@@ -1,14 +1,13 @@
 package site.skillstory.backend.controller;
 
-import jakarta.persistence.PostUpdate;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.skillstory.backend.model.domain.Reqeust.RequestPostModel;
 import site.skillstory.backend.model.domain.Response.ResponsePostModel;
 import site.skillstory.backend.model.entity.PostEntity;
-import site.skillstory.backend.model.repository.PostRepository;
 import site.skillstory.backend.service.PostService;
 
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.Optional;
 @RestController
 public class PostController {
     private final PostService service;
-    private final RequestPostModel requestPostModel;
 
 
     @PostMapping("/")
@@ -45,5 +43,10 @@ public class PostController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete (@PathVariable Long id) {
         return ResponseEntity.ok(service.delete(id));
+    }
+
+    @GetMapping
+    public Page<PostEntity> pagination (@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return service.pagination(page, size);
     }
 }
