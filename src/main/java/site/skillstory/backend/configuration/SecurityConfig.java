@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import site.skillstory.backend.service.implement.CustomUserDetailService;
+import site.skillstory.backend.security.CustomUserDetailService;
 
 @Configuration
 @EnableWebSecurity
@@ -29,19 +29,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize
                                 .requestMatchers("/api/users/**").permitAll()  // 회원가입 및 인증 관련 경로는 모두 허용
+                                .requestMatchers("/api/posts/**").permitAll()
                                 .requestMatchers("/static/**").permitAll()
                                 .requestMatchers("/log.png").permitAll()
                                 .requestMatchers("/api/posts/create").authenticated()  // 이 경로는 인증된 사용자만 접근 가능
-                                .anyRequest().authenticated())  // 그 외 모든 경로는 인증 필요
-                .formLogin((form) ->
-                        form
-                                .usernameParameter("username") // 로그인 폼에서 사용자 이름 필드 설정
-                                .passwordParameter("password") // 로그인 폼에서 비밀번호 필드 설정
-                                .loginProcessingUrl("/api/users/auth") // 로그인을 처리할 URL 설정 (POST)
-                                .defaultSuccessUrl("/api/home", true)  // 로그인 성공 시 이동할 URL
-                                .permitAll()
-                                .successForwardUrl("/api/users/authSuccess") // 성공 시 추가 경로
-                                .failureForwardUrl("/api/users/authFail"))  // 실패 시 리다이렉트
+                                    .anyRequest().authenticated())  // 그 외 모든 경로는 인증 필요
+                    .formLogin((form) ->
+                            form
+                                    .usernameParameter("username") // 로그인 폼에서 사용자 이름 필드 설정
+                                    .passwordParameter("password") // 로그인 폼에서 비밀번호 필드 설정
+                                    .loginProcessingUrl("/api/users/auth") // 로그인을 처리할 URL 설정 (POST)
+                                    .defaultSuccessUrl("/api/home", true)  // 로그인 성공 시 이동할 URL
+                                    .permitAll()
+                                    .failureForwardUrl("/api/users/authFail"))  // 실패 시 리다이렉트
                 .logout((logout) ->
                         logout
                                 .logoutUrl("/api/users/logOut")  // 로그아웃 URL

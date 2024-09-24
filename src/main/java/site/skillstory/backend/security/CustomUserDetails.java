@@ -1,4 +1,4 @@
-package site.skillstory.backend.model.domain;
+package site.skillstory.backend.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

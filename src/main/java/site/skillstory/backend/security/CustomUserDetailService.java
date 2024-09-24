@@ -1,4 +1,4 @@
-package site.skillstory.backend.service.implement;
+package site.skillstory.backend.security;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.skillstory.backend.exception.user.UserAlreadyExistsException;
 import site.skillstory.backend.exception.user.UserNotFoundException;
-import site.skillstory.backend.model.domain.CustomUserDetails;
 import site.skillstory.backend.model.domain.Reqeust.RequestUserModel;
 import site.skillstory.backend.model.entity.UserEntity;
 import site.skillstory.backend.model.repository.UserRepository;

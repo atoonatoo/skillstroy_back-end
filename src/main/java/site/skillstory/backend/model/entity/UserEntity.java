@@ -39,7 +39,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String career;
 
-    @Column(nullable = false, columnDefinition = "varchar(255) default 'student'")
-    private String role;  // 역할 (학생, 강사, 멘토, 관리자 등)
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'ROLE_USER'")
+    private String role;  // 역할 (일반회원, 강사, 멘토, 관리자 등)
 
 }
