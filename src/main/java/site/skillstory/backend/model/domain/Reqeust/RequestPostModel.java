@@ -13,7 +13,7 @@ public class RequestPostModel {
     private Long id;
     @NotBlank(message = "Title is required")  // 필수값 설정
     private String title;
-    @NotBlank(message = "Title is required")  // 필수값 설정
+    @NotBlank(message = "Description is required")  // 필수값 설정
     private String description;
     private LocalDate entryDate;
     private LocalDate modifyDate;

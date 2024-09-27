@@ -58,10 +58,8 @@ public class UserController {
         return ResponseEntity.ok("Logged out successfully");
     }
 
-
-    // 뷰로 반환할 프론트가 없어서
-    // Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-    // 오류가 생기는 것으로 추정
-    // 간단하게 view를 만들어 보도록 할 것이다.
-
+    @GetMapping("/find-username")
+    public ResponseEntity<String> findEmail (@RequestParam String email) {
+        return ResponseEntity.ok(service.findUsername(email));
+    }
 }

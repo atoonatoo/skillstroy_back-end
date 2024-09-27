@@ -7,10 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import site.skillstory.backend.exception.post.PostNotFoundException;
-import site.skillstory.backend.exception.user.InvalidUserCredentialsException;
-import site.skillstory.backend.exception.user.UserAlreadyExistsException;
-import site.skillstory.backend.exception.user.UserAuthenticationFailedException;
-import site.skillstory.backend.exception.user.UserNotFoundException;
+import site.skillstory.backend.exception.user.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +44,13 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(PostNotFoundException.class)
-    public ResponseEntity<String> PostNotFoundException (PostNotFoundException ex) {
+    public ResponseEntity<String> PostNotFoundException(PostNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(InvalidEmailFormatException.class)
+    public ResponseEntity<String> handleInvalidEmailFormatException(InvalidEmailFormatException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }

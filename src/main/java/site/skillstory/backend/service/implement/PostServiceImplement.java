@@ -76,6 +76,4 @@ public class PostServiceImplement implements PostService {
         PageRequest pageRequest = PageRequest.of(page, size);
         return postRepository.findAll(pageRequest);
     }
-
-
 }

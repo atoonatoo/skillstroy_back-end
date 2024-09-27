@@ -16,4 +16,6 @@ public interface UserService {
     ResponseEntity<UserEntity> update(Long id, RequestUserModel requestUserModel);
 
     ResponseEntity<Boolean> delete(Long id);
+
+    String findUsername(String email);
 }
