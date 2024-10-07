@@ -7,9 +7,6 @@ import site.skillstory.backend.model.entity.UserEntity;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long>, UserRepositoryCustom {
 
-    Optional<UserEntity> findByUsername(String username);
-
-    Optional<UserEntity> findByEmail(String email);
 }
